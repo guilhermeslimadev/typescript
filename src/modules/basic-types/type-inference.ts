@@ -1,5 +1,5 @@
 let product = 'Fritadeira Elétrica';
 
-product = 750;
+product = 'Geladeira';
 
 export default product;
