@@ -1,3 +1,3 @@
-import { bootstrap } from './modules/narrowing/truthy-and-falsy.js';
+import { bootstrap } from './modules/narrowing/optional-chaining.js';
 
 export { bootstrap };
