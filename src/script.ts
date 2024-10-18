@@ -1,3 +1,3 @@
-import { bootstrap } from './modules/narrowing/optional-chaining.js';
+import { bootstrap } from './modules/narrowing/non-null-assertion.js';
 
 export { bootstrap };
