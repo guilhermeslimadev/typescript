@@ -1,3 +1,3 @@
-import { bootstrap } from './modules/narrowing/array-isarray.js';
+import { bootstrap } from './modules/narrowing/type-unknown.js';
 
 export { bootstrap };
