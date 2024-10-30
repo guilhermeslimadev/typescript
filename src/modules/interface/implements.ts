@@ -11,6 +11,11 @@ export const bootstrap = (): void => {
     level: 'beginner' | 'intermediate' | 'advanced';
   }
 
+  interface Resume {
+    dateOfBirth?: Date;
+    sumary?: string;
+  }
+
   class MyResume implements Resume {
     constructor(
       public fullName: string,
