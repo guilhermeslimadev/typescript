@@ -1,3 +1,3 @@
-import { bootstrap } from './modules/utility-types/required.js';
+import { bootstrap } from './modules/utility-types/type-predicate.js';
 
 export { bootstrap };
