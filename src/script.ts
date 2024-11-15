@@ -1,3 +1,3 @@
-import { bootstrap } from './modules/classes/optional_properties.js';
+import { bootstrap } from './modules/classes/override.js';
 
 export { bootstrap };
