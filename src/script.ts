@@ -1,3 +1,3 @@
-import { bootstrap } from './modules/classes/override.js';
+import { bootstrap } from './modules/classes/overloading.js';
 
 export { bootstrap };
