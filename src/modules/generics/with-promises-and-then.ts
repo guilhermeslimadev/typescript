@@ -30,7 +30,7 @@ export const bootstrap = (): void => {
   );
   //respGames.then((data) => console.log(data));
 
-  const respCars = fetchData<Array<Game>>(
+  const respCars = fetchData<Array<Car>>(
     'https://argus-academy.com/mock/api/cars/',
     isCarArray,
   );
