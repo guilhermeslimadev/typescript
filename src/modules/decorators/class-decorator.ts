@@ -3,6 +3,18 @@ export const bootstrap = (): void => {
 
   function AddLogMethod(dateFormat: string, className: string, prefix: string) {
     return function <T extends ConstructorFunction>(constructor: T): T {
+      constructor.prototype.loggerInfo = function () {
+        console.log(
+          `${prefix} - ${className} - ${new Date().toLocaleString(dateFormat)} - ${JSON.stringify(this)}`,
+        );
+      };
+      return constructor;
+    };
+  }
+
+  /*
+  function AddLogMethod(dateFormat: string, className: string, prefix: string) {
+    return function <T extends ConstructorFunction>(constructor: T): T {
       //console.log('Chegamos no decorador');
       console.log(constructor);
 
@@ -15,6 +27,7 @@ export const bootstrap = (): void => {
       };
     };
   }
+  */
   /*
   @AddLogMethod
   class Product {
@@ -24,13 +37,13 @@ export const bootstrap = (): void => {
       this.name = name;
     }
   }
-    */
+  */
 
   @AddLogMethod('pt-BR', 'Person', '[LOG]')
   class Person {
     name: string;
     age: number;
-    loggerInfo!: () => void;
+    //loggerInfo!: () => {}
 
     constructor(name: string, age: number) {
       this.name = name;
@@ -40,5 +53,5 @@ export const bootstrap = (): void => {
 
   const person = new Person('Jorge', 35);
   console.log(person);
-  person.loggerInfo();
+  (person as any).loggerInfo();
 };
