@@ -1,32 +1,29 @@
 export const bootstrap = (): void => {
   const UserLogin = {
     username: 'jorge',
-    permissions: ['User'],
+    permissions: ['Guest'],
   };
 
   function CheckPermissions(requiredPermissions: string[]): MethodDecorator {
-    return (target, propertyKey, descriptor) => {
-      //console.log(requiredPermissions);
-
-      // target: classe na qual o método está definido
-      //console.log(target);
-
-      // propertyKey: nome do método que está sendo decorado
-      //console.log(propertyKey);
-
-      // descriptor: descreve as propriedades do método (descriptor.value utilizado para manipular o método)
-      //console.log(descriptor);
-
+    return <T>(
+      target: Object,
+      propertyKey: string | symbol,
+      descriptor: TypedPropertyDescriptor<T>,
+    ) => {
+      console.log(descriptor.value);
       const hasPermission = requiredPermissions.some((permission) =>
         UserLogin.permissions.includes(permission),
       );
 
       if (!hasPermission) {
-        throw new Error(
+        console.error(
           `Usuário ${UserLogin.username} não tem permissão ${requiredPermissions} para acessar ${String(propertyKey)}`,
         );
+
+        descriptor.value = function () {} as T;
       }
 
+      console.log(descriptor.value);
       return descriptor;
     };
   }
@@ -37,7 +34,7 @@ export const bootstrap = (): void => {
       console.log('Retorna a relação de itens adicionados ao carrinho');
     }
 
-    @CheckPermissions(['Admin', 'Super User'])
+    //@CheckPermissions(['Admin', 'Super User'])
     deleteItem() {
       console.log('Remove um item do carrinho');
     }
@@ -45,5 +42,4 @@ export const bootstrap = (): void => {
 
   const shoppingCart = new ShoppingCart();
   shoppingCart.getItems();
-  shoppingCart.deleteItem();
 };
