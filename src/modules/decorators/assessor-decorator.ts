@@ -16,21 +16,34 @@ export const bootstrap = (): void => {
 
           originalMethod?.apply(this, [newValue]);
         }
-
-        //value
       };
 
       return descriptor;
     };
   }
 
-  //'ImpLemeNtar a pipEline de dePloy do projeto X'
-  //'"Implementar" "A" "Pipeline" "De" "Deploy" "Do" "Projeto" "X"'
+  function AddPrefix(prefix: string) {
+    return function <T>(
+      target: Object,
+      propertyKey: string | symbol,
+      descriptor: TypedPropertyDescriptor<T>,
+    ) {
+      const originalMethod = descriptor.get as () => T;
+
+      descriptor.get = function (this: any): T {
+        const originalValue = originalMethod.apply(this);
+        return `${prefix} ${originalValue}` as T;
+      };
+
+      return descriptor;
+    };
+  }
 
   class ServiceOrder {
     private _title: string = '';
 
     @CapitalizeText()
+    @AddPrefix('[Ordem de Serviço]')
     set title(value: string) {
       this._title = value;
     }
@@ -41,6 +54,7 @@ export const bootstrap = (): void => {
   }
 
   const serviceOrder = new ServiceOrder();
-  serviceOrder.title = 'ImpLemeNtar a pipEline de dePloy do projeto X';
+  serviceOrder.title =
+    'Refatorar o código para que as funções de tratamento de dados sejam convertidas para decoradores';
   console.warn(serviceOrder.title);
 };
