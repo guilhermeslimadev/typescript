@@ -1,3 +1,3 @@
-import { bootstrap } from './modules/decorators/assessor-decorator.js';
+import { bootstrap } from './modules/decorators/property-decorator.js';
 
 export { bootstrap };
